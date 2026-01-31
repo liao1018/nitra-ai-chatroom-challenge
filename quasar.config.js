@@ -66,6 +66,7 @@ export default defineConfig((/* ctx */) => {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
+      port: 9001, // 避免與本機 php-fpm 佔用的 9000 衝突
       // https: true,
       open: true // opens browser window automatically
     },
@@ -73,6 +74,7 @@ export default defineConfig((/* ctx */) => {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework
     framework: {
       config: {},
+      iconSet: 'fontawesome-v6',
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
