@@ -46,12 +46,21 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-.message-bubble-left {
+.message-bubble-left,
+.message-bubble-right {
   max-width: 85%;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.message-bubble-left {
   border-radius: 0 12px 12px 12px;
 }
 .message-bubble-right {
-  max-width: 85%;
   border-radius: 12px 0 12px 12px;
+}
+:deep(.q-markdown) {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 </style>

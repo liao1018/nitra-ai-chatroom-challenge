@@ -6,23 +6,30 @@
     class="chat-modal-panel"
     transition-show="fade"
     transition-hide="fade"
+    @show="openModal"
     @update:model-value="(v) => $emit('update:modelValue', v)"
   >
     <q-card class="q-mx-md column">
       <ChatModalHeader @close="close" />
-      <ChatModalContent :messages="messages" :show-bottom-marquee="showBottomMarquee" />
+      <ChatModalContent
+        ref="contentRef"
+        :messages="messages"
+        :show-bottom-marquee="showBottomMarquee"
+      />
       <ChatModalFooter :send-message="sendUserMessage" />
     </q-card>
   </q-dialog>
 </template>
 
 <script setup>
+import { ref, nextTick } from "vue";
 import ChatModalHeader from "components/ChatModalHeader.vue";
 import ChatModalContent from "components/ChatModalContent.vue";
 import ChatModalFooter from "components/ChatModalFooter.vue";
 import { useChatMessages } from "src/composables/useChatMessages";
 
-const { messages, sendUserMessage, showBottomMarquee } = useChatMessages();
+const { messages, sendUserMessage, showBottomMarquee, startWelcomeTyping } =
+  useChatMessages();
 
 defineProps({
   modelValue: {
@@ -32,6 +39,13 @@ defineProps({
 });
 
 const emit = defineEmits(["update:modelValue"]);
+
+const contentRef = ref(null);
+
+function openModal() {
+  startWelcomeTyping();
+  contentRef.value?.scrollToBottom?.()
+}
 
 function close() {
   emit("update:modelValue", false);

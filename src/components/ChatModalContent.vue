@@ -1,6 +1,7 @@
 <template>
   <div class="col column relative-position" style="min-height: 0">
-    <q-scroll-area class="col q-pt-lg q-px-md">
+    <q-scroll-area ref="scrollAreaRef" class="col q-px-md">
+      <div class="q-pt-lg"></div>
       <ChatModalMessageBubble
         v-for="msg in messages"
         :key="msg.id"
@@ -8,10 +9,7 @@
         :content="msg.content"
       />
     </q-scroll-area>
-    <div
-      v-if="showBottomMarquee"
-      class="absolute-bottom-left q-px-md q-pb-md"
-    >
+    <div v-if="showBottomMarquee" class="absolute-bottom-left q-px-md q-pb-md">
       <ChatModalBottomMarquee />
     </div>
   </div>
@@ -20,8 +18,9 @@
 <script setup>
 import ChatModalMessageBubble from "components/ChatModalMessageBubble.vue";
 import ChatModalBottomMarquee from "components/ChatModalBottomMarquee.vue";
+import { useScrollToBottom } from "src/composables/useScrollToBottom.js";
 
-defineProps({
+const props = defineProps({
   messages: {
     type: Array,
     default: () => [],
@@ -31,4 +30,8 @@ defineProps({
     default: true,
   },
 });
+
+const { scrollAreaRef, scrollToBottom } = useScrollToBottom(() => props.messages);
+
+defineExpose({ scrollToBottom });
 </script>
