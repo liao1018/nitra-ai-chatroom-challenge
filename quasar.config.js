@@ -68,7 +68,7 @@ export default defineConfig((/* ctx */) => {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
-      port: 9001, // 避免與本機 php-fpm 佔用的 9000 衝突
+      port: 9000,
       // https: true,
       open: true // opens browser window automatically
     },
