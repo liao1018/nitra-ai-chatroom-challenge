@@ -12,11 +12,13 @@ export default defineConfig((/* ctx */) => {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
+      "qmarkdown",
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
     css: [
-      'app.scss'
+      "app.scss",
+      "~@quasar/quasar-ui-qmarkdown/src/index.sass",
     ],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras

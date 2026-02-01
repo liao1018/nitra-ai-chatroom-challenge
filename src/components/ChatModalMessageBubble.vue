@@ -1,9 +1,6 @@
 <template>
   <div
-    :class="[
-      'row q-gutter-sm q-mb-md',
-      role === 'user' ? 'justify-end' : '',
-    ]"
+    :class="['row q-gutter-sm q-mb-md', role === 'user' ? 'justify-end' : '']"
   >
     <q-avatar
       v-if="role === 'assistant'"
@@ -16,12 +13,19 @@
     <q-card
       flat
       :class="[
-        role === 'assistant' ? 'message-bubble-left bg-grey-2' : 'message-bubble-right bg-teal-2',
+        role === 'assistant'
+          ? 'message-bubble-left bg-grey-2'
+          : 'message-bubble-right bg-teal-2',
         'q-py-sm q-px-md',
       ]"
     >
       <q-card-section class="q-pa-none text-body1 text-grey-8">
-        {{ content }}
+        <q-markdown
+          v-if="role === 'assistant'"
+          :src="content"
+          class="q-markdown"
+        />
+        <template v-else>{{ content }}</template>
       </q-card-section>
     </q-card>
   </div>

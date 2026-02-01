@@ -2,7 +2,8 @@
 
 ## 1. Tools I Used
 
-- **Quasar** .
+- **Quasar**
+- **QMarkdown** – Quasar App Extension for rendering assistant message content as Markdown (bold, links, lists, etc.) in the chat bubble.
 - **Vite** – Build tool (via Quasar CLI).
 - **Font Awesome**
 - **SCSS**
