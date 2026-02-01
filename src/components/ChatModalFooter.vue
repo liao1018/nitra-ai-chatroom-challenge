@@ -16,6 +16,7 @@
             icon="fas fa-paperclip"
             color="grey-5"
             aria-label="Attach"
+            disable
           />
           <q-btn
             size="sm"
@@ -24,6 +25,8 @@
             icon="fas fa-chevron-right"
             color="primary"
             aria-label="Send"
+            :loading="props.isAssistantResponding"
+            :disable="props.isAssistantResponding"
             @click="handleSend"
           />
         </div>
@@ -40,11 +43,16 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  isAssistantResponding: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const inputText = ref("");
 
 function handleSend() {
+  if (props.isAssistantResponding) return;
   const trimmed = inputText.value.trim();
   if (!trimmed) return;
   props.sendMessage(trimmed);

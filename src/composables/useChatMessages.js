@@ -13,9 +13,8 @@ export function useChatMessages() {
   const messages = ref([]);
   const showBottomMarquee = ref(true);
   const isThinking = ref(false);
+  const isAssistantResponding = ref(false);
   let typingIntervalId = null;
-  let typingFullText = null;
-  let typingMessageIndex = -1;
 
   function startWelcomeTyping() {
     if (messages.value.length > 0) return;
@@ -30,6 +29,7 @@ export function useChatMessages() {
     const entry = MESSAGE_MOCK_MAP[trimmed];
     const assistantContent = entry?.message?.content ?? FALLBACK_REPLY;
     isThinking.value = true;
+    isAssistantResponding.value = true;
     setTimeout(() => {
       isThinking.value = false;
       sendAssistantMessage(assistantContent);
@@ -37,6 +37,7 @@ export function useChatMessages() {
   }
 
   function sendAssistantMessage(assistantContent) {
+    isAssistantResponding.value = true;
     addMessage("assistant", "");
     typeOutMessage(assistantContent);
   }
@@ -47,35 +48,19 @@ export function useChatMessages() {
   }
 
   function typeOutMessage(fullText, delayMs = TYPING_DELAY_MS) {
-    if (typingIntervalId != null) {
-      clearInterval(typingIntervalId);
-      typingIntervalId = null;
-      if (
-        typingFullText != null &&
-        typingMessageIndex >= 0 &&
-        typingMessageIndex < messages.value.length
-      ) {
-        messages.value[typingMessageIndex].content = typingFullText;
-      }
-      typingFullText = null;
-      typingMessageIndex = -1;
-    }
-
     if (!fullText) return;
 
     const lastIndex = messages.value.length - 1;
     if (lastIndex < 0) return;
 
-    typingFullText = fullText;
-    typingMessageIndex = lastIndex;
+    isAssistantResponding.value = true;
     let index = 0;
 
     typingIntervalId = setInterval(() => {
       if (index >= fullText.length) {
         clearInterval(typingIntervalId);
         typingIntervalId = null;
-        typingFullText = null;
-        typingMessageIndex = -1;
+        isAssistantResponding.value = false;
         if (lastIndex >= 0 && lastIndex < messages.value.length) {
           messages.value[lastIndex].content = fullText;
         }
@@ -95,5 +80,6 @@ export function useChatMessages() {
     addMessage,
     showBottomMarquee,
     isThinking,
+    isAssistantResponding,
   };
 }

@@ -17,7 +17,10 @@
         :show-bottom-marquee="showBottomMarquee"
         :is-thinking="isThinking"
       />
-      <ChatModalFooter :send-message="sendUserMessage" />
+      <ChatModalFooter
+        :send-message="sendUserMessage"
+        :is-assistant-responding="isAssistantResponding"
+      />
     </q-card>
   </q-dialog>
 </template>
@@ -35,6 +38,7 @@ const {
   showBottomMarquee,
   startWelcomeTyping,
   isThinking,
+  isAssistantResponding,
 } = useChatMessages();
 
 defineProps({
