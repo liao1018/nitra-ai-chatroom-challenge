@@ -1,5 +1,7 @@
 # Quasar App (ai-chatroom-assignment)
 
+See [SUBMISSION.md](./SUBMISSION.md) for assignment notes.
+
 This is the basic setup for the AI Chatroom Assignment. You can use it as a starting point to implement the requirements and bring in any libraries you’re comfortable with.
 
 ## Install the dependencies
