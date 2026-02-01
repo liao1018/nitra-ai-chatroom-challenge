@@ -9,6 +9,7 @@
       />
     </q-scroll-area>
     <div
+      v-if="showBottomMarquee"
       class="absolute-bottom-left q-px-md q-pb-md"
     >
       <ChatModalBottomMarquee />
@@ -24,6 +25,10 @@ defineProps({
   messages: {
     type: Array,
     default: () => [],
+  },
+  showBottomMarquee: {
+    type: Boolean,
+    default: true,
   },
 });
 </script>

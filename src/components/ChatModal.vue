@@ -10,7 +10,7 @@
   >
     <q-card class="q-mx-md column">
       <ChatModalHeader @close="close" />
-      <ChatModalContent :messages="messages" />
+      <ChatModalContent :messages="messages" :show-bottom-marquee="showBottomMarquee" />
       <ChatModalFooter :send-message="sendUserMessage" />
     </q-card>
   </q-dialog>
@@ -22,7 +22,7 @@ import ChatModalContent from "components/ChatModalContent.vue";
 import ChatModalFooter from "components/ChatModalFooter.vue";
 import { useChatMessages } from "src/composables/useChatMessages";
 
-const { messages, sendUserMessage } = useChatMessages();
+const { messages, sendUserMessage, showBottomMarquee } = useChatMessages();
 
 defineProps({
   modelValue: {

@@ -10,6 +10,7 @@ const FALLBACK_REPLY =
 
 export function useChatMessages() {
   const messages = ref([...INITIAL_MESSAGES]);
+  const showBottomMarquee = ref(true);
 
   function addMessage(role, content) {
     const id = Math.max(0, ...messages.value.map((m) => m.id)) + 1;
@@ -19,11 +20,12 @@ export function useChatMessages() {
   function sendUserMessage(userText) {
     const trimmed = userText?.trim();
     if (!trimmed) return;
+    showBottomMarquee.value = false;
     addMessage("user", trimmed);
     const entry = MESSAGE_MOCK_MAP[trimmed];
     const assistantContent = entry?.message?.content ?? FALLBACK_REPLY;
     addMessage("assistant", assistantContent);
   }
 
-  return { messages, addMessage, sendUserMessage };
+  return { messages, addMessage, sendUserMessage, showBottomMarquee };
 }
