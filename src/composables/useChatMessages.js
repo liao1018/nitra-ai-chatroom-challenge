@@ -77,7 +77,6 @@ export function useChatMessages() {
     messages,
     startWelcomeTyping,
     sendUserMessage,
-    addMessage,
     showBottomMarquee,
     isThinking,
     isAssistantResponding,

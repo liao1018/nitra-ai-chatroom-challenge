@@ -1,10 +1,7 @@
 <template>
   <div class="overflow-hidden">
     <Transition name="marquee-slide" mode="out-in">
-      <div
-        :key="currentIndex"
-        class="row items-center q-gutter-sm"
-      >
+      <div :key="currentIndex" class="row items-center q-gutter-sm">
         <q-icon
           v-if="currentItem.icon"
           :name="currentItem.icon"
@@ -24,8 +21,14 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 const ITEMS = [
   { text: "Upload your supplier list", icon: "fas fa-clipboard-list" },
   { text: "Check if Avastin is in stock", icon: "fas fa-cart-shopping" },
-  { text: "Check if there's a better price for Xeomin", icon: "fas fa-hand-holding-dollar" },
-  { text: "What are some generic options for Restylane", icon: "fas fa-search" },
+  {
+    text: "Check if there's a better price for Xeomin",
+    icon: "fas fa-hand-holding-dollar",
+  },
+  {
+    text: "What are some generic options for Restylane",
+    icon: "fas fa-search",
+  },
   { text: "What’s the best product for Xeomin", icon: "fas fa-thumbs-up" },
 ];
 
@@ -62,7 +65,9 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .marquee-slide-leave-active,
 .marquee-slide-enter-active {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .marquee-slide-leave-to {

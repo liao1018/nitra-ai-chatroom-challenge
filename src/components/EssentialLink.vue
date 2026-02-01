@@ -21,12 +21,12 @@
 defineProps({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   caption: String,
   to: String,
   target: String,
   href: String,
-  icon: String
-})
+  icon: String,
+});
 </script>

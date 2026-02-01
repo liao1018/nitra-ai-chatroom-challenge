@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from "vue";
+import { ref } from "vue";
 import ChatModalHeader from "components/ChatModalHeader.vue";
 import ChatModalContent from "components/ChatModalContent.vue";
 import ChatModalFooter from "components/ChatModalFooter.vue";
@@ -54,7 +54,7 @@ const contentRef = ref(null);
 
 function openModal() {
   startWelcomeTyping();
-  contentRef.value?.scrollToBottom?.()
+  contentRef.value?.scrollToBottom?.();
 }
 
 function close() {

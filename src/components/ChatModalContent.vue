@@ -41,7 +41,9 @@ const props = defineProps({
   },
 });
 
-const { scrollAreaRef, scrollToBottom } = useScrollToBottom(() => props.messages);
+const { scrollAreaRef, scrollToBottom } = useScrollToBottom(
+  () => props.messages,
+);
 
 defineExpose({ scrollToBottom });
 </script>

@@ -1,6 +1,9 @@
 <template>
   <div class="color-card">
-    <div class="color-preview" :style="{ backgroundColor: props.color.hex }"></div>
+    <div
+      class="color-preview"
+      :style="{ backgroundColor: props.color.hex }"
+    ></div>
     <div class="color-info">
       <div class="color-name">{{ props.color.name }}</div>
       <div class="color-hex">{{ props.color.hex }}</div>
@@ -27,31 +30,32 @@
 </template>
 
 <script setup>
-import { copyToClipboard as quasarCopy, useQuasar } from 'quasar'
+import { copyToClipboard as quasarCopy, useQuasar } from "quasar";
 const props = defineProps({
-    color: {
-      type: Object,
-      required: true,
-      validator(value) {
-        return value &&
-               typeof value.name === 'string' &&
-               typeof value.hex === 'string' &&
-               typeof value.class === 'string'
-    }
-  }
-})
+  color: {
+    type: Object,
+    required: true,
+    validator(value) {
+      return (
+        value &&
+        typeof value.name === "string" &&
+        typeof value.hex === "string" &&
+        typeof value.class === "string"
+      );
+    },
+  },
+});
 
-const $q = useQuasar()
+const $q = useQuasar();
 async function copyToClipboard(text) {
-  await quasarCopy(text)
+  await quasarCopy(text);
   $q.notify({
-    message: 'Copied to clipboard',
-    color: 'white',
-    textColor: 'primary',
-    icon: 'check'
-  })
+    message: "Copied to clipboard",
+    color: "white",
+    textColor: "primary",
+    icon: "check",
+  });
 }
-
 </script>
 
 <style scoped>
@@ -60,7 +64,9 @@ async function copyToClipboard(text) {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   cursor: pointer;
 }
 
@@ -86,7 +92,7 @@ async function copyToClipboard(text) {
 }
 
 .color-hex {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   font-size: 12px;
   color: #666;
   margin-bottom: 8px;

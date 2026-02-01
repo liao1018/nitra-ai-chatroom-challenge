@@ -7,7 +7,12 @@
       rounded
       @click="showModal = !showModal"
     >
-      <q-icon name="fas fa-wand-magic-sparkles" size="xs" color="white" class="q-mr-sm"/>
+      <q-icon
+        name="fas fa-wand-magic-sparkles"
+        size="xs"
+        color="white"
+        class="q-mr-sm"
+      />
       <span class="text-white text-weight-bold">Ask Nitra AI</span>
     </q-btn>
   </div>
@@ -15,10 +20,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import ChatModal from 'components/ChatModal.vue'
+import { ref } from "vue";
+import ChatModal from "components/ChatModal.vue";
 
-const showModal = ref(false)
+const showModal = ref(false);
 </script>
 
 <style scoped>

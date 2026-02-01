@@ -12,9 +12,13 @@
       <q-card-section class="q-pa-none text-body1 text-grey-8">
         <template v-if="isThinkingDots">
           Thinking
-          <span class="thinking-dot font-size-lg" style="animation-delay: 0s">.</span
-          ><span class="thinking-dot font-size-lg" style="animation-delay: 0.2s">.</span
-          ><span class="thinking-dot font-size-lg" style="animation-delay: 0.4s">.</span>
+          <span class="thinking-dot font-size-lg" style="animation-delay: 0s"
+            >.</span
+          ><span class="thinking-dot font-size-lg" style="animation-delay: 0.2s"
+            >.</span
+          ><span class="thinking-dot font-size-lg" style="animation-delay: 0.4s"
+            >.</span
+          >
         </template>
         <q-markdown
           v-else-if="role === 'assistant'"
