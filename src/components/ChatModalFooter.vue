@@ -1,6 +1,11 @@
 <template>
   <q-card-section class="message-input-footer q-py-none">
-    <q-input borderless placeholder="Say something...">
+    <q-input
+      v-model="inputText"
+      borderless
+      placeholder="Say something..."
+      @keydown.enter.prevent="handleSend"
+    >
       <template #append>
         <div class="q-gutter-x-sm">
           <q-btn
@@ -19,6 +24,7 @@
             icon="fas fa-chevron-right"
             color="primary"
             aria-label="Send"
+            @click="handleSend"
           />
         </div>
       </template>
@@ -27,6 +33,23 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
+const props = defineProps({
+  sendMessage: {
+    type: Function,
+    required: true,
+  },
+});
+
+const inputText = ref("");
+
+function handleSend() {
+  const trimmed = inputText.value.trim();
+  if (!trimmed) return;
+  props.sendMessage(trimmed);
+  inputText.value = "";
+}
 </script>
 
 <style lang="scss" scoped>

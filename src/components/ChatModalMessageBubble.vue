@@ -2,11 +2,11 @@
   <div
     :class="[
       'row q-gutter-sm q-mb-md',
-      side === 'right' ? 'justify-end' : '',
+      role === 'user' ? 'justify-end' : '',
     ]"
   >
     <q-avatar
-      v-if="side === 'left'"
+      v-if="role === 'assistant'"
       size="28px"
       color="primary"
       text-color="white"
@@ -16,12 +16,12 @@
     <q-card
       flat
       :class="[
-        side === 'left' ? 'message-bubble-left bg-grey-2' : 'message-bubble-right bg-teal-2',
+        role === 'assistant' ? 'message-bubble-left bg-grey-2' : 'message-bubble-right bg-teal-2',
         'q-py-sm q-px-md',
       ]"
     >
       <q-card-section class="q-pa-none text-body1 text-grey-8">
-        {{ text }}
+        {{ content }}
       </q-card-section>
     </q-card>
   </div>
@@ -29,12 +29,12 @@
 
 <script setup>
 defineProps({
-  side: {
+  role: {
     type: String,
-    validator: (v) => v === "left" || v === "right",
-    default: "left",
+    validator: (v) => v === "assistant" || v === "user",
+    default: "assistant",
   },
-  text: {
+  content: {
     type: String,
     default: "",
   },
