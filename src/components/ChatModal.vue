@@ -35,8 +35,8 @@ import { useChatMessages } from "src/composables/useChatMessages";
 const {
   messages,
   sendUserMessage,
-  showBottomMarquee,
   startWelcomeTyping,
+  showBottomMarquee,
   isThinking,
   isAssistantResponding,
 } = useChatMessages();
@@ -51,7 +51,6 @@ defineProps({
 const emit = defineEmits(["update:modelValue"]);
 
 const contentRef = ref(null);
-
 function openModal() {
   startWelcomeTyping();
   contentRef.value?.scrollToBottom?.();

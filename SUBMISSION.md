@@ -14,7 +14,11 @@
 
 - **Modal and button in MainLayout** – The ChatModal and the floating "Ask Nitra AI" button are placed in `MainLayout.vue` so the button is available on every page. The layout wraps the whole app (via `router-view`), so users can open the AI chat from anywhere without navigating to a specific page.
 
+- **Single chat state** – `useChatMessages()` is only called inside ChatModal, and ChatModal stays mounted (the dialog is toggled via v-model only), so the app has a single chat state and does not create duplicate instances.
+
 - **ChatModal prefix for related components** – All ChatModal-related components (e.g. ChatModalHeader, ChatModalContent, ChatModalFooter, ChatModalMessageBubble) use the "ChatModal" prefix in their file names so they sort together in the file list and are easy to find.
+
+- **Logic in Composition API** – Business logic is split into composables (e.g. `useChatMessages`, `useScrollToBottom`) so that components stay focused on the view and stay easier to maintain.
 
 ## 3. Challenges and How I Solved Them
 

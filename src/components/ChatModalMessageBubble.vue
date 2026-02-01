@@ -80,6 +80,9 @@ const bubbleClass = computed(() => [
 :deep(.q-markdown) {
   overflow-wrap: break-word;
   word-break: break-word;
+  a {
+    color: var(--q-accent);
+  }
 }
 .thinking-dot {
   animation: thinking-blink 0.6s ease-in-out infinite;
