@@ -7,10 +7,12 @@ const FALLBACK_REPLY =
   "I don't have a response for that. Try one of the suggested questions.";
 
 const TYPING_DELAY_MS = 12;
+const AI_REPLY_DELAY_MS = 3000;
 
 export function useChatMessages() {
   const messages = ref([]);
   const showBottomMarquee = ref(true);
+  const isThinking = ref(false);
   let typingIntervalId = null;
   let typingFullText = null;
   let typingMessageIndex = -1;
@@ -27,7 +29,11 @@ export function useChatMessages() {
     addMessage("user", trimmed);
     const entry = MESSAGE_MOCK_MAP[trimmed];
     const assistantContent = entry?.message?.content ?? FALLBACK_REPLY;
-    sendAssistantMessage(assistantContent);
+    isThinking.value = true;
+    setTimeout(() => {
+      isThinking.value = false;
+      sendAssistantMessage(assistantContent);
+    }, AI_REPLY_DELAY_MS);
   }
 
   function sendAssistantMessage(assistantContent) {
@@ -88,5 +94,6 @@ export function useChatMessages() {
     sendUserMessage,
     addMessage,
     showBottomMarquee,
+    isThinking,
   };
 }

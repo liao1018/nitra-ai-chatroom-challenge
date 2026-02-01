@@ -8,6 +8,12 @@
         :role="msg.role"
         :content="msg.content"
       />
+      <ChatModalMessageBubble
+        v-if="isThinking"
+        key="thinking"
+        role="assistant"
+        :is-thinking-dots="true"
+      />
     </q-scroll-area>
     <div v-if="showBottomMarquee" class="absolute-bottom-left q-px-md q-pb-md">
       <ChatModalBottomMarquee />
@@ -28,6 +34,10 @@ const props = defineProps({
   showBottomMarquee: {
     type: Boolean,
     default: true,
+  },
+  isThinking: {
+    type: Boolean,
+    default: false,
   },
 });
 

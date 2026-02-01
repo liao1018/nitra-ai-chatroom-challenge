@@ -15,6 +15,7 @@
         ref="contentRef"
         :messages="messages"
         :show-bottom-marquee="showBottomMarquee"
+        :is-thinking="isThinking"
       />
       <ChatModalFooter :send-message="sendUserMessage" />
     </q-card>
@@ -28,8 +29,13 @@ import ChatModalContent from "components/ChatModalContent.vue";
 import ChatModalFooter from "components/ChatModalFooter.vue";
 import { useChatMessages } from "src/composables/useChatMessages";
 
-const { messages, sendUserMessage, showBottomMarquee, startWelcomeTyping } =
-  useChatMessages();
+const {
+  messages,
+  sendUserMessage,
+  showBottomMarquee,
+  startWelcomeTyping,
+  isThinking,
+} = useChatMessages();
 
 defineProps({
   modelValue: {
